@@ -1,9 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-# Descriptions for the project
-set(PROJ_NAME cmaker)
-set(VER 0.0.1)
-set(CPP_STD 17)
+include(${CMAKE_SOURCE_DIR}/cmake/global_vars.cmake)
 
 project(${PROJ_NAME} VERSION ${VER} LANGUAGES C CXX)
 
@@ -19,6 +16,8 @@ endif(PROJECT_IS_IN_ROOT)
 option(HAS_TESTS "Build and perform tests" ${PROJECT_IS_IN_ROOT})
 option(HAS_BENCHES "Build and perform benches" ${PROJECT_IS_IN_ROOT})
 option(HAS_EXAMPLES "Build and perform examples" ${PROJECT_IS_IN_ROOT})
+option(HAS_CLANG_TOOLS "Build and use Clang tools" ${PROJECT_IS_IN_ROOT})
+option(HAS_MSAN "Build and use Memory Sanitizer" ${PROJECT_IS_IN_ROOT})
 
 # Includes
 set(SRC_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/src/include)
@@ -53,3 +52,9 @@ if(HAS_EXAMPLES)
     message(STATUS "Building examples")
     add_subdirectory(examples)
 endif(HAS_EXAMPLES) 
+
+if(HAS_CLANG_TOOLS)
+    include(${CMAKE_SOURCE_DIR}/cmake/clang_tools.cmake)
+    define_clang_tidy_targets()
+    define_clang_format_targets()
+endif(HAS_CLANG_TOOLS)

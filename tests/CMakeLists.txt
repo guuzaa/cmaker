@@ -1,16 +1,14 @@
 enable_testing()
 
-
-# TODO how to read from the local directory
 set(test_dir_list "${CMAKE_CURRENT_SOURCE_DIR}/lib")
 
 foreach(test_dir ${test_dir_list})
     file(GLOB_RECURSE test_files "${test_dir}/*-test.cpp" "${test_dir}/*-test.cc")
-    get_filename_component(dir_name ${test_dir} NAME)
+    get_filename_component(dir_name ${test_dir} NAME_WE)
 
     set(test_name ${dir_name}_test)
     add_executable(${test_name} EXCLUDE_FROM_ALL ${test_files})
-    target_link_libraries(${test_name} PRIVATE lib_obj gtest gmock_main)
+    target_link_libraries(${test_name} PRIVATE ${ALL_OBJECTS} gtest gmock_main)
 
     add_custom_target(
         test-${dir_name}
@@ -34,4 +32,3 @@ add_custom_target(check-tests
     DEPENDS ${TEST_TARGETS}
     COMMENT "Runnig All Tests..."
 )
-

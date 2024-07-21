@@ -2,7 +2,7 @@ set(bench_dir_list "${CMAKE_CURRENT_SOURCE_DIR}/lib")
 
 foreach(bench_dir ${bench_dir_list})
     file(GLOB_RECURSE bench_files "${bench_dir}/*-bench.cpp" "${bench_dir}/*-bench.cc")
-    get_filename_component(dir_name ${bench_dir} NAME)
+    get_filename_component(dir_name ${bench_dir} NAME_WE)
 
     set(bench_name ${dir_name}_bench)
     add_executable(${bench_name} EXCLUDE_FROM_ALL ${bench_files})
