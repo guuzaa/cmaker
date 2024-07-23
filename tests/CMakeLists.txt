@@ -3,7 +3,7 @@ enable_testing()
 set(test_dir_list "${CMAKE_CURRENT_SOURCE_DIR}/lib")
 
 foreach(test_dir ${test_dir_list})
-    file(GLOB_RECURSE test_files "${test_dir}/*-test.cpp" "${test_dir}/*-test.cc")
+    file(GLOB_RECURSE test_files "${test_dir}/*.cpp" "${test_dir}/*.cc")
     get_filename_component(dir_name ${test_dir} NAME_WE)
 
     set(test_name ${dir_name}_test)

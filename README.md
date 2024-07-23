@@ -1,5 +1,7 @@
 # CMaker
 
+CMake likes Cargo.
+
 ## What it does
 - Opt for Cargo's [`package layout`](https://doc.rust-lang.org/cargo/guide/project-layout.html) in CMake.
 - Support C and C++
@@ -10,7 +12,7 @@
 - Use `GitHub Actions` for CI (not ready yet)
 - Use `Docker` for containerizing (not ready yet)
 
-## Why do that
+## Why do this
 As we all know, Cargo might be the best build system in the computer world. It helps us to create a library or an execuable as ease. In addition, it allows us to run some examples or tests of your choice by the cargo run command. However, Cargo is designed only for Rust progarmming language. If we use C/C++ more often, how can we configure CMake to function similarly to Cargo? `CMaker` it is.
 
 ## License

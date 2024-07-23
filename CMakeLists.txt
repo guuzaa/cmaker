@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 
-include(${CMAKE_SOURCE_DIR}/cmake/global_vars.cmake)
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
+
+include(Config)
 
 project(${PROJ_NAME} VERSION ${VER} LANGUAGES C CXX)
 
@@ -26,7 +28,7 @@ include_directories(${SRC_INCLUDE_DIR})
 add_subdirectory(${PROJECT_SOURCE_DIR}/src)
 
 if(PROJECT_IS_IN_ROOT)
-    include(${CMAKE_SOURCE_DIR}/cmake/3rd_party.cmake)
+    include(3rdParty)
 endif(PROJECT_IS_IN_ROOT)
 
 if(HAS_BENCHES) 
@@ -39,8 +41,12 @@ endif(HAS_BENCHES)
 
 # The below needs to be built in Debug mode
 set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -g")
+
+if(HAS_MSAN)
+    include(Sanitizers)
+    message(STATUS "Building tests for Sanitizers")
+    define_sanitizer()
+endif(HAS_MSAN)
 
 if(HAS_TESTS) 
     include_benchmark()
@@ -54,7 +60,7 @@ if(HAS_EXAMPLES)
 endif(HAS_EXAMPLES) 
 
 if(HAS_CLANG_TOOLS)
-    include(${CMAKE_SOURCE_DIR}/cmake/clang_tools.cmake)
+    include(ClangTools)
     define_clang_tidy_targets()
     define_clang_format_targets()
 endif(HAS_CLANG_TOOLS)
