@@ -1,4 +1,4 @@
-file(GLOB bin_files "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/*.cc")
+get_source_files(bin_files "${CMAKE_CURRENT_SOURCE_DIR}")
 
 foreach(bin_file ${bin_files})
     get_filename_component(bin_name ${bin_file} NAME_WE)

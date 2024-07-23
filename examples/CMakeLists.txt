@@ -1,14 +1,13 @@
-file(GLOB_RECURSE EXAMPLE_SOURCES "${PROJECT_SOURCE_DIR}/examples/*.cc" "${PROJECT_SOURCE_DIR}/examples/*.cpp")
+get_source_files(EXAMPLE_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}")
 
-add_custom_target(example)
-
+add_custom_target(examples)
 foreach (example_source ${EXAMPLE_SOURCES})
     get_filename_component(example_filename ${example_source} NAME_WE)
     set(example_name "example-${example_filename}")
     add_executable(${example_name} EXCLUDE_FROM_ALL ${example_source})
 
     add_custom_command(
-        TARGET example
+        TARGET examples
         COMMENT "Running all examples..."
         COMMAND $<TARGET_FILE:${example_name}>
         USES_TERMINAL
