@@ -27,11 +27,8 @@ include_directories(${SRC_INCLUDE_DIR})
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/src)
 
-if(PROJECT_IS_IN_ROOT)
-    include(3rdParty)
-endif(PROJECT_IS_IN_ROOT)
-
 if(HAS_BENCHES) 
+    include(3rdParty)
     include_googletest()
     set(CMAKE_BUILD_TYPE Release)
     include_benchmark()
@@ -49,7 +46,8 @@ if(HAS_MSAN)
 endif(HAS_MSAN)
 
 if(HAS_TESTS) 
-    include_benchmark()
+    include(3rdParty)
+    include_googletest()
     message(STATUS "Building tests")
     add_subdirectory(tests)
 endif(HAS_TESTS)
