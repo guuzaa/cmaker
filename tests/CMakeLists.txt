@@ -15,20 +15,20 @@ foreach(test_dir ${test_dir_list})
         COMMENT "Running test ${test_name}..."
         COMMAND ${test_name}
     )
-    set_target_properties(${test_name} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/tests")
+    set_target_properties(${test_name} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TestsBinaryPath}")
 
     list(APPEND TEST_TARGETS ${test_name})
     add_test(NAME ${test_name} COMMAND ${test_name})
 endforeach(test_dir ${test_dir_list})
 
 add_custom_target(run-tests
-    COMMAND ${CMAKE_CTEST_COMMAND} -C Debug
+    COMMAND ${CMAKE_CTEST_COMMAND} -C Release
     DEPENDS ${TEST_TARGETS}
     COMMENT "Build and Run All Tests..."
 )
 
 add_custom_target(check-tests
-    COMMAND ${CMAKE_CTEST_COMMAND} -C Debug --verbose
+    COMMAND ${CMAKE_CTEST_COMMAND} -C Debug --verbose 
     DEPENDS ${TEST_TARGETS}
     COMMENT "Runnig All Tests..."
 )

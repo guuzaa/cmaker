@@ -6,7 +6,7 @@ foreach(bin_file ${bin_files})
     target_link_libraries(${bin_name} PRIVATE ${ALL_OBJECTS})
 
     set_target_properties(${bin_name} 
-        PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+        PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${BinBinaryPath}"
         COMMAND ${bin_name}
     )
 

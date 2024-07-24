@@ -14,6 +14,14 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-parameter -Wno-attributes")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-parameter -Wno-attributes")
 
+# Paths
+set(UnitTestsBinaryPath "${CMAKE_BINARY_DIR}/unit-tests")
+set(TestsBinaryPath "${CMAKE_BINARY_DIR}/tests")
+set(BenchesBinaryPath "${CMAKE_BINARY_DIR}/benches")
+set(ExamplesBinaryPath "${CMAKE_BINARY_DIR}/examples")
+set(BinBinaryPath "${CMAKE_BINARY_DIR}/bin")
+
+# Functions definition
 function(append_to_list_elements list_out item pattern)
     foreach(suffix ${supported_suffixes})
         list(APPEND ret_list "${item}/*${pattern}${suffix}")

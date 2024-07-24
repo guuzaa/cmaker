@@ -2,7 +2,6 @@ get_current_directory_name(dir "${CMAKE_CURRENT_SOURCE_DIR}")
 set(lib_name "${dir}_obj")
 
 get_source_files(obj_files "${CMAKE_CURRENT_SOURCE_DIR}")
-
 add_library(
     ${lib_name}
     OBJECT
@@ -18,9 +17,9 @@ if(test_files)
     include_googletest()
     set(test_name "${dir}_unit_test")
     add_executable(${test_name} EXCLUDE_FROM_ALL ${test_files})
-    target_link_libraries(${test_name} PRIVATE lib_obj gtest gmock_main)
+    target_link_libraries(${test_name} PRIVATE ${lib_name} gtest gmock_main)
 
-    set_target_properties(${test_name} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/unit-tests")
+    set_target_properties(${test_name} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${UnitTestsBinaryPath}")
 
     add_custom_target(
         "unit-test-${dir}"
