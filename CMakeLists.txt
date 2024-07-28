@@ -41,7 +41,7 @@ set(CMAKE_BUILD_TYPE Debug)
 
 if(HAS_MSAN)
     include(Sanitizers)
-    message(STATUS "Building tests for Sanitizers")
+    message(STATUS "Building Sanitizers")
     define_sanitizer()
 endif(HAS_MSAN)
 
