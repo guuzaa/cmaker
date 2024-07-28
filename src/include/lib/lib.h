@@ -4,4 +4,4 @@
 template <typename T>
 T add(T a, T b);
 
-#endif //__LIB_H__
+#endif  //__LIB_H__
