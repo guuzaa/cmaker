@@ -30,14 +30,10 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/src)
 if(HAS_BENCHES) 
     include(3rdParty)
     include_googletest()
-    set(CMAKE_BUILD_TYPE Release)
     include_benchmark()
     message(STATUS "Building benches")
     add_subdirectory(benches)
 endif(HAS_BENCHES) 
-
-# The below needs to be built in Debug mode
-set(CMAKE_BUILD_TYPE Debug)
 
 if(HAS_MSAN)
     include(Sanitizers)
